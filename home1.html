@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://www.w3school.com.cn/lib/bs/bootstrap.css" rel="stylesheet">
+    <!-- 最新编译的 JavaScript -->
+    <script src="https://www.w3school.com.cn/lib/bs/bootstrap.js"></script>
+    <script type="text/javascript">
+        window._AMapSecurityConfig = {
+            securityJsCode: '06abfa295d7451c24c05e707120bac86',
+            
+        }
+    </script>
+    <script src="https://webapi.amap.com/loader.js"></script>
+    <script src="https://webapi.amap.com/maps?v=1.4.15&key=be963313949082015c3f5cbfdb36a651&plugin=Map3D"></script>
+    <script src="https://cache.amap.com/lbs/static/es5.min.js"></script>
+    <title>Document</title>
+    <style>
+        body {
+            background-color: rgb(240, 242, 245);
+            height: 2100px;
+        }
+
+        @font-face {
+            font-family: RobotoSlab;
+            src: url('./ttf/RobotoSlab-Bold.ttf');
+        }
+
+        .contentfont {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #7B809A;
+        }
+
+        .imgshadow {
+            box-shadow: 0 0 20px rgb(88, 88, 88);
+        }
+
+        .fonthover:hover {
+            color: rgb(88, 88, 88);
+        }
+
+        .fonthover {
+            color: #FFF;
+            text-decoration: none;
+        }
+
+        .introduce {
+            position: absolute;
+            width: 1300px;
+            top: 50%;
+            height: 800px;
+            z-index: 2;
+            background-color: #FFF;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 7px rgb(88, 88, 88);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .introitem {
+            margin-top: 40px;
+            margin-left: 100px;
+            font-size: 28px;
+            font-weight: 800;
+            font-family: RobotoSlab;
+        }
+
+        #map {
+            width: 700px;
+            height: 650px;
+        }
+
+        .mapcontainer {
+            width: 1260px;
+            margin: 0 auto;
+            border-radius: 8px;
+            border-color: rgb(52, 71, 103);
+            border-style: solid;
+            border-width: 4px;
+        }
+
+        .map {
+            padding: 0;
+            height: 650px;
+            border: 0px;
+        }
+
+        .aboutFont {
+            color: rgb(37, 122, 233);
+            text-decoration: none;
+        }
+
+        .mapSet {
+            text-decoration: none;
+            font-family: RobotoSlab;
+            font-size: 20px;
+            font-weight: 600;
+            color: rgb(52, 71, 103);
+        }
+
+        .positionSet {
+            height: 300px;
+            padding: 25px;
+        }
+
+        .positionDiv {
+            border-radius: 10px;
+            border-color: black;
+            border-style: solid;
+            border-width: 0px;
+            height: 250px;
+            box-shadow: 0 0 5px rgb(88, 88, 88);
+            padding: 10px;
+
+        }
+
+        .titleFont {
+            font-family: RobotoSlab;
+            font-size: 20px;
+            font-weight: 600;
+            color: rgb(52, 71, 103);
+            margin-left: 130px;
+        }
+
+        .contentFont {
+            font-family: RobotoSlab;
+            font-size: 18px;
+            font-weight: 600;
+            color: rgb(52, 71, 103);
+            margin-bottom: 4px;
+        }
+
+        .pictureDiv {
+            /* border-radius: 10px;
+            border-color: black;
+            border-style: solid;
+            border-width: 0px; */
+            height: 230px;
+            /* box-shadow: 0 0 3px rgb(88, 88, 88); */
+        }
+
+        .footer {
+            position: absolute;
+            margin-top: 2000px;
+            width: 100%;
+            height: 100px;
+            z-index: 9;
+        }
+
+        .btnimg{
+            padding: 0px;
+            height: 100%;
+            width:100%;
+            background-image: url('./icons/hot.png');
+        }
+
+        .btnimg2{
+            height: 100%;
+            width:100%;
+            background-image: url('./icons/pie.png');
+        }
+
+        .aboutFont:hover img {
+
+            animation-name: LeftToRight;
+            /* 2、动画持续时间 */
+            animation-duration: 0.3s;
+            /* 3、动画执行速度 */
+            animation-timing-function: linear;
+            /* 5、设置动画播放次数 */
+            animation-iteration-count: infinite;
+            /* 6、设置动画是否反向播放 */
+            animation-direction: alternate;
+            /* 7、动画结束时应用最后一帧 */
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes LeftToRight {
+            0% {
+                margin-left: 0px;
+            }
+
+            100% {
+                margin-left: 5px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-sm position-absolute w-100 navbar-dark " style="z-index: 99;">
+        <div class="container-fluid">
+            <a class="navbar-brand ms-5" href="javascript:void(0)">Meachine Learing</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse position-relative" id="mynavbar">
+                <!-- <a class="nav-link dropdown-toggle fonthover" href="#" role="button" data-bs-toggle="dropdown">下拉菜单</a> -->
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">链接</a></li>
+                    <li><a class="dropdown-item" href="#">另一个链接</a></li>
+                    <li><a class="dropdown-item" href="#">第三个链接</a></li>
+                </ul>
+                <div class="me-auto position-absolute" style="right: 8%;">
+                    <a class="navbar-brand" href="javascript:void(0)">IMG</a>
+                    <a class="fonthover">用户名</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <header>
+        <div class="position-absolute imgshadow"
+            style="height: 450px; width: 100%; background-image: url('./imgs/bgimg.jpg'); z-index: 1;" loading="lazy">
+        </div>
+    </header>
+    <main class="container-fluid">
+        <div class="introduce start-50 translate-middle-x"
+            style="background-image:linear-gradient(to bottom,rgb(212,212,213) 0%,#FFF 80px);">
+            <div class="row ">
+                <div class="col-12">
+                    <div class="row mt-5">
+                        <div class="col-lg-7 col-md-7 z-index-2 position-relative px-md-2 px-sm-5 mx-auto">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h3 class="mb-0"
+                                    style="font-family:RobotoSlab,sans-serif ;font-weight: 800;color: rgb(52,71,103); font-size: 35px;">
+                                    About
+                                    Machine Learning</h3>
+                            </div>
+                            <div class="row mb-4 contentfont" style="font-family:黑体;font-size: 18px;">
+                                <div class="col-auto mt-2">
+                                    <span>建模</span>
+                                </div>
+                                <div class="col-auto mt-2">
+                                    <span>绘图</span>
+                                </div>
+                                <div class="col-auto mt-2">
+                                    <span>计算</span>
+                                </div>
+                            </div>
+                            <p class="text-lg mb-0" style="font-family:黑体;font-size: 18px;color: rgb(123,128,154);">
+                                欢迎你！
+                            </p>
+                            <p class="text-lg mb-0" style="font-family:黑体;font-size: 18px;color: rgb(123,128,154);">
+                                关于Machine Learning，我们着眼于应用深度学习技术，并借此对卫星遥感图像进行分析，
+                                从而得到城市的土地利用分类情况。希望通过我们的服务，能够为城市的发展提供一些参考，从而为“智慧城市”的建设做出一些贡献。
+                            </p>
+                            <a href="javascript:;" class="aboutFont">More about us<img src="./icons/arrow.png"
+                                    aria-hidden="true"></img></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="introitem">
+                Meaching Learning能做什么？
+            </div>
+            <div class="row mt-4" style="padding: 0px 100px;">
+                <div class="card col">
+                    <img class="card-img-top" src="" alt="Card image">
+                    <div class="card-body">
+                        <h4 class="card-title">土地类型识别分类</h4>
+                        <p class="card-text">通过在地图上选定的范围，我们会给出在此范围内土地类型的分类数据。</p>
+                    </div>
+                </div>
+                <div class="card col ms-3">
+                    <img class="card-img-top" src="" alt="Card image">
+                    <div class="card-body">
+                        <h4 class="card-title">生成数据热力图</h4>
+                        <p class="card-text">依据地图范围内已经生成的分类数据，我们会绘制一张热力图展示给您。</p>
+                    </div>
+                </div>
+                <div class="card col ms-3">
+                    <img class="card-img-top" src="" alt="Card image">
+                    <div class="card-body">
+                        <h4 class="card-title">生成数据表格</h4>
+                        <p class="card-text">根据你想要的表格形式，给出分类数据中不同数据的相关比例。</p>
+                    </div>
+                </div>
+                <div class="card col ms-3">
+                    <img class="card-img-top" src="" alt="Card image">
+                    <div class="card-body">
+                        <h4 class="card-title">导出相关数据</h4>
+                        <p class="card-text">生成数据后，您可以下载此数据以供您后续使用。</p>
+                    </div>
+                </div>
+            </div>
+            <div>
+
+            </div>
+        </div>
+        <div class="introduce start-50 translate-middle-x" style="margin-top: 900px;height: 700px;">
+            <div class="row mapcontainer">
+                <div class="col-7 map" id="container"></div>
+                <div class="col-5">
+                    <div class="mt-3 ms-3">
+                        <a class="mapSet">地图展示设置</a>
+                        <button class="btn btn-outline-primary ms-3" onclick="addLayer()">展示卫星图像</button>
+                        <button class="btn btn-outline-primary ms-3" onclick="rmLayer()">展示初始图像</button>
+                    </div>
+                    <div class="positionSet">
+                        <div class="positionDiv">
+                            <p class="titleFont">范围对角经纬坐标</p>
+                            <div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div>
+                                            <p class="contentFont">NO.1</p>
+                                        </div>
+                                        <div>
+                                            <input type="text" class="form-control" id="leftTopLat" placeholder="纬度">
+                                            <input type="text" class="form-control mt-2" id="leftTopLng"
+                                                placeholder="经度">
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div>
+                                            <p class="contentFont">NO.2</p>
+                                        </div>
+                                        <div>
+                                            <input type="text" class="form-control" id="rightBottomLat"
+                                                placeholder="纬度">
+                                            <input type="text" class="form-control mt-2" id="rightTopLng"
+                                                placeholder="经度">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    <button class="btn btn-primary mt-4"
+                                        style="margin-left: 50px;width: 100px;">选取No1</button>
+                                </div>
+                                <div class="col-4">
+                                    <button class="btn btn-outline-success mt-4"
+                                        style="margin-left: 20px;width: 100px;">确认</button>
+                                </div>
+                                <div class="col-4">
+                                    <button class="btn btn-primary mt-4"
+                                        style="margin-left: -10px;width: 100px;">选取No2</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 p-3">
+                            <p class="mapSet" style="margin-left: 40px;margin-bottom: 3px;">点击绘制热力图</p>
+                            <div class="pictureDiv">
+                                <button class="btn btnimg"></button>
+                            </div>
+                        </div>
+                        <div class="col-6 p-3">
+                            <p class="mapSet" style="margin-left: 40px;margin-bottom: 3px;">点击绘制饼状图</p>
+                            <div class="pictureDiv">
+                                <button class="btn btnimg2"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            var map = new AMap.Map('container', {
+                resizeEnable: true,
+                center: [113.40, 39.91],
+                zoom: 7
+            });
+
+            var satellite = new AMap.TileLayer.Satellite({
+                map: map,
+            });
+
+            satellite.setMap(map);
+            satellite.hide();
+
+            var marker = new AMap.Marker({
+                position: new AMap.LngLat(120.39, 49.9),   // 经纬度对象，也可以是经纬度构成的一维数组[116.39, 39.9]
+                title: '北京'
+            });
+
+            // 将创建的点标记添加到已有的地图实例：
+            map.add(marker);
+
+
+            map.on('click', function (e) {
+                document.getElementById("leftTopLat").value = e.lnglat.getLat();
+                document.getElementById("leftTopLng").value = e.lnglat.getLng();
+            });
+
+            function addLayer() {
+                satellite.show();
+            }
+
+            function rmLayer() {
+                satellite.hide();
+            }
+        </script>
+    </main>
+    <footer>
+        <div class="footer">
+            <div class="row">
+                <div class="col-5">
+                    <p style="font-size: 16px;margin-left: 110px;font-weight:bold;color: rgb(52,71,103);">MEACHINE
+                        LEARNING</p>
+                    <p style="font-size: 14px;margin-left: 110px;margin-top:20px;color:rgb(123,128,154);">Copyright ©
+                        2022 made by FreeWill Group.</p>
+                </div>
+                <div class="col-7">
+                    <a href="#" class="btn btn-info" style="margin-left: 650px;color: #FFF;">下载数据</a>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+</body>
+
+</html>

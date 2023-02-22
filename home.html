@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://www.w3school.com.cn/lib/bs/bootstrap.css" rel="stylesheet">
+    <!-- 最新编译的 JavaScript -->
+    <script src="https://www.w3school.com.cn/lib/bs/bootstrap.js"></script>
+    <title>Document</title>
+    <style>
+        .selectFrame {
+            background-color: rgb(237,240,247);
+            height: 730px;
+            border-style: solid;
+            border-width: 0px;
+            border-color: rgb(52, 71, 103);
+            box-shadow: 0 0 10px rgb(211, 211, 211);
+        }
+
+        @font-face {
+            font-family: RobotoSlab;
+            src: url('./ttf/RobotoSlab-Bold.ttf');
+        }
+
+        .selectTitle {
+            font-family: RobotoSlab;
+            font-size: 35px;
+            color: #7B809A;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .selectlist {
+            background-color: rgb(237,240,247);
+            font-family: 黑体;
+            font-weight: bold;
+        }
+
+        .selectlist:hover {
+            background-color: rgb(211, 211, 214);
+            color: #FFF;
+        }
+
+        .titleDiv {
+            padding: 20px;
+            background-color: #FFF;
+            height: 660px;
+            width: 100%;
+        }
+
+        .dataTitle {
+            background-color: rgb(245, 247, 247);
+            height: 60px;
+            line-height: 60px;
+            font-family: RobotoSlab;
+            font-size: 25px;
+            color: rgb(90, 91, 97);
+            text-align: center;
+            margin-top: 20px;
+            font-weight: bold;
+            border-bottom: 2px solid rgb(229,229,229);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-2 selectFrame">
+                <div>
+                    <p class="selectTitle">Welcome!</p>
+                </div>
+                <div><img class="mt-4" src="./icon/base.png" style="margin-left: 55px;"></div>
+                <div style="margin-top:50px ;">
+                    <ul class="list-group">
+                        <li class="list-group-item selectlist"><img src="./icon/data.png" class="me-2">地震事件信息</li>
+                        <li class="list-group-item selectlist mt-2"><img src="./icon/data.png" class="me-2">伤亡失踪数据</li>
+                        <li class="list-group-item selectlist mt-2"><img src="./icon/data.png" class="me-2">房屋破坏信息</li>
+                        <li class="list-group-item selectlist mt-2"><img src="./icon/data.png" class="me-2">生命线工程灾情</li>
+                        <li class="list-group-item selectlist mt-2"><img src="./icon/data.png" class="me-2">次生灾害信息</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-10" style="background-color: rgb(239,240,245);">
+                <div>
+                    <nav class="navbar navbar-expand-sm navbar-dark bg-info">
+                        <div class="container-fluid">
+                            <a class="navbar-brand" href="javascript:void(0)">Message</a>
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#mynavbar">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <form class="d-flex">
+                                <input class="form-control me-2" type="text" placeholder="Search">
+                                <button class="btn btn-warning" type="button">Search</button>
+                            </form>
+                        </div>
+                    </nav>
+                </div>
+                <div class="titleDiv">
+                    <div style="font-size: 23px;font-family: 黑体;font-weight: bold;">人员伤亡数据</div>
+                    <div class="mt-1" style="font-family: 黑体;">收录来自中国地震台网，国家地震科学数据中心和其他来源的地震数据并加以整合展示</div>
+                    <div>
+                        <div class="dataTitle">数据列表</div>
+                        <table class="table overflow-scroll">
+                            <thead style="background-color: rgb(245, 247, 247);">
+                                <tr>
+                                    <th>编号</th>
+                                    <th>参考位置</th>
+                                    <th>时间</th>
+                                    <th>数据源</th>
+                                    <th>数据载体</th>
+                                    <th>分类</th>
+                                    <th>标签</th>
+                                    <th>描述</th>
+                                </tr>
+                            </thead>
+                            <tbody style="font-size:14px ;">
+                                <tr>
+                                    <td>Green</td>
+                                    <td>Tims</td>
+                                    <td>1</td>
+                                    <td>Green</td>
+                                    <td>Tims</td>
+                                    <td>1</td>
+                                    <td>Tims</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>Green</td>
+                                    <td>Tims</td>
+                                    <td>1</td>
+                                    <td>Green</td>
+                                    <td>Tims</td>
+                                    <td>1</td>
+                                    <td>Tims</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>Green</td>
+                                    <td>Tims</td>
+                                    <td>1</td>
+                                    <td>Green</td>
+                                    <td>Tims</td>
+                                    <td>1</td>
+                                    <td>Tims</td>
+                                    <td>1</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
